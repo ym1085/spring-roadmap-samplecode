@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <property name="LOG_PATH" value="./logs"/>
+    <property name="LOG_FILE_NAME" value="local_logback"/>
+    <property name="ERR_LOG_FILE_NAME" value="local_error_logback"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%white(%d{yyyy-MM-dd HH:mm:ss.SSS}) %cyan([%thread]) %highlight([%-5level]) %yellow([%logger{0}]) - %boldWhite(%m%n)"/>
+    <property name="FILE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] [%-5level] [%logger{0}] - %m%n"/>
+    <springProperty scope="context" name="LOG_LEVEL" source="log.level.root"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="CONSOLE"/>
+        <!--<appender-ref ref="FILE"/>
+        <appender-ref ref="ERROR"/>-->
+    </root>
+</configuration>
